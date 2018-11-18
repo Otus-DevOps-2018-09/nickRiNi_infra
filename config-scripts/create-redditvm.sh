@@ -1,0 +1,1 @@
+gcloud compute instances create reddit-app-2  --boot-disk-size=10GB   --image-family reddit-full --machine-type=g1-small   --tags puma-server   --restart-on-failure  --metadata-from-file startup-script=startup-script.sh
