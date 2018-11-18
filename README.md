@@ -38,3 +38,7 @@ gcloud compute firewall-rules create "default-puma-server" --allow tcp:9292 --so
 Данные для проверки:
 testapp_IP = 35.189.121.40
 testapp_port = 9292
+
+#Домашнее задание №5
+Задание выполнено, собран reddit-full образ с использованием файла переменных. Запуск сервера puma осуществляется из стартап скрипта при выполнении команды gcloud.
+Команда gcloud оприсана в скрипте config-scripts/create-redditvm.sh
