@@ -1,7 +1,9 @@
-# nickRiNi_infra
+## nickRiNi_infra
+
+
 nickRiNi Infra repository
 
-#Организация доступа к виртуальной машине прозрачно через Bastion host
+## Организация доступа к виртуальной машине прозрачно через Bastion host
 
 ```bash
 eval `ssh-agent -s`
@@ -29,7 +31,8 @@ alias someinternalhost='ssh someinternalhost'
 
 bastion_IP = 35.242.142.140
 someinternalhost_IP = 10.156.0.2
-#Домашнее задание №4
+
+## Домашнее задание №4
 
 Создание виртуальной машины со стартап скриптом
 ```bash
@@ -43,7 +46,7 @@ gcloud compute firewall-rules create "default-puma-server" --allow tcp:9292 --so
 testapp_IP = 35.189.121.40
 testapp_port = 9292
 
-#Домашнее задание №5
+## Домашнее задание №5
 
 Задание выполнено, собран reddit-full образ с использованием файла переменных. Запуск сервера puma осуществляется из стартап скрипта при выполнении команды gcloud.
 Команда gcloud оприсана в скрипте config-scripts/create-redditvm.sh
