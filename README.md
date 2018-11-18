@@ -2,9 +2,12 @@
 nickRiNi Infra repository
 
 #Организация доступа к виртуальной машине прозрачно через Bastion host
+
+```bash
 eval `ssh-agent -s`
 ssh-add -L
 ssh-add gcp_appuser
+```
 Помимо действий в методичке добавить в файл .ssh/config следующее содержимое
 ```bash
 Host bastion
@@ -27,6 +30,7 @@ alias someinternalhost='ssh someinternalhost'
 bastion_IP = 35.242.142.140
 someinternalhost_IP = 10.156.0.2
 #Домашнее задание №4
+
 Создание виртуальной машины со стартап скриптом
 ```bash
 gcloud compute instances create reddit-app  --boot-disk-size=10GB   --image-family ubuntu-1604-lts   --image-project=ubuntu-os-cloud   --machine-type=g1-small   --tags puma-server   --restart-on-failure  --metadata-from-file startup-script=startup.sh
@@ -40,5 +44,6 @@ testapp_IP = 35.189.121.40
 testapp_port = 9292
 
 #Домашнее задание №5
+
 Задание выполнено, собран reddit-full образ с использованием файла переменных. Запуск сервера puma осуществляется из стартап скрипта при выполнении команды gcloud.
 Команда gcloud оприсана в скрипте config-scripts/create-redditvm.sh
