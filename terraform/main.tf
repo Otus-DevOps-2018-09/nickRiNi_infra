@@ -7,7 +7,7 @@ provider "google" {
 resource "google_compute_instance" "app" {
   name         = "reddit-app-terraform"
   machine_type = "g1-small"
-  zone         = "${var.region}"
+  zone         = "${var.zone}"
   tags         = ["reddit-app"]
 
   # определение загрузочного диска
@@ -27,7 +27,9 @@ resource "google_compute_instance" "app" {
     network = "default"
 
     # использовать ephemeral IP для доступа из Интернет
-    access_config {}
+    access_config = {
+      nat_ip = "${google_compute_address.app_ip.address}"
+    }
   }
 
   connection {
@@ -47,6 +49,10 @@ resource "google_compute_instance" "app" {
   }
 }
 
+resource "google_compute_address" "app_ip" {
+  name = "reddit-app-ip"
+}
+
 resource "google_compute_firewall" "firewall_puma" {
   name = "allow-puma-default"
 
@@ -64,4 +70,17 @@ resource "google_compute_firewall" "firewall_puma" {
 
   # Правило применимо для инстансов с перечисленными тэгами
   target_tags = ["reddit-app"]
+}
+
+resource "google_compute_firewall" "firewall_ssh" {
+  name     = "default-allow-ssh"
+  network  = "default"
+  priority = "65534"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
 }
