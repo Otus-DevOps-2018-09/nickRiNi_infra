@@ -5,4 +5,3 @@ app_disk_image = "reddit-app-base"
 db_disk_image = "reddit-db-base"
 app_name = "reddit-app-stage"
 db_name = "reddit-db-stage"
-
